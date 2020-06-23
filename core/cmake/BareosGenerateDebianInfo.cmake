@@ -51,6 +51,6 @@ if(GENERATE_DEBIAN_CONTROL)
          DEBIAN_CONTROL_UNIVENTION_BAREOS)
   endif()
 
-  file(READ ${CMAKE_SOURCE_DIR}/debian/control.bareos-traymonitor DEBIAN_CONTROL_BAREOS_WEBUI)
+  file(READ ${CMAKE_SOURCE_DIR}/debian/control.bareos-webui DEBIAN_CONTROL_BAREOS_WEBUI)
 
 endif()
