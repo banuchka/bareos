@@ -15,7 +15,7 @@ create_config_resource_template()
 
    DEST="$DEST_DIR/etc/bareos/${RESPATH}"
    if ! [ -e "$DEST" ]; then
-      SOURCE="src/defaultconfigs/${RESPATH}"
+      SOURCE="core/src/defaultconfigs/${RESPATH}"
       mkdir -p `dirname $DEST`
       printf '%s\n' '@%@UCRWARNING=# @%@' > $DEST
       cat $SOURCE >> $DEST
