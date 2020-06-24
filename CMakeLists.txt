@@ -28,13 +28,14 @@ set(default_build_type "Debug")
 find_package(Git)
 include(BareosVersionFromGit)
 include(BareosExtractVersionInfo)
+include(BareosGetDistInfo)
 
 set(BUILDNAME
     "${BAREOS_FULL_VERSION}"
     CACHE STRING "site name variable for CDash"
 )
 set(SITE
-    "${CMAKE_SYSTEM}"
+    "${CMAKE_SYSTEM_NAME}-${DISTVER}-${CMAKE_HOST_SYSTEM_PROCESSOR}"
     CACHE STRING "build name variable for CDash"
 )
 # enable "make test"
