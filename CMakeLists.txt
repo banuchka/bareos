@@ -78,3 +78,4 @@ if(docs
 )
   add_subdirectory(docs/manuals)
 endif()
+set(SITE ${PLATFORM}-${DISTVER})
