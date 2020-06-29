@@ -301,7 +301,7 @@ macro(prepare_testdir_for_daemon_run)
   set(piddir ${current_test_directory}/piddir)
 
   set(backenddir ${BACKEND_DIR_TO_TEST})
-  set(sd_backenddir ${SD_BACKEND_DIR})
+  set(sd_backenddir ${SD_BACKEND_DIR_TO_TEST})
   set(BAREOS_WEBUI_PUBLIC_DIR ${WEBUI_PUBLIC_DIR_TO_TEST})
 
   if(RUN_SYSTEMTESTS_ON_INSTALLED_FILES)
@@ -479,7 +479,10 @@ else() # run systemtests on source and compiled files
 
   get_target_property(FD_PLUGINS_DIR_TO_TEST bpipe-fd BINARY_DIR)
   get_target_property(SD_PLUGINS_DIR_TO_TEST autoxflate-sd BINARY_DIR)
-  get_target_property(SD_BACKEND_DIR bareossd-droplet BINARY_DIR)
+
+  if(TARGET bareossd-droplet)
+    get_target_property(SD_BACKEND_DIR_TO_TEST bareossd-droplet BINARY_DIR)
+  endif()
   if(TARGET bareossd-gfapi)
     get_target_property(SD_GFAPI_DIR_TO_TEST bareossd-gfapi BINARY_DIR)
   endif()
@@ -499,6 +502,7 @@ message("   FD_PLUGINS_DIR_TO_TEST: ${FD_PLUGINS_DIR_TO_TEST}")
 message("   SD_PLUGINS_DIR_TO_TEST: ${SD_PLUGINS_DIR_TO_TEST}")
 message("   DIR_PLUGINS_DIR_TO_TEST: ${DIR_PLUGINS_DIR_TO_TEST}")
 message("   BACKEND_DIR_TO_TEST: ${BACKEND_DIR_TO_TEST}")
+message("   SD_BACKEND_DIR_TO_TEST: ${SD_BACKEND_DIR_TO_TEST}")
 message("   WEBUI_PUBLIC_DIR_TO_TEST: ${WEBUI_PUBLIC_DIR_TO_TEST}")
 
 # extract  db version from cats.h
@@ -669,7 +673,7 @@ else()
   list(APPEND SYSTEM_TESTS_DISABLED droplet-s3)
 endif()
 
-if(SD_GFAPI_DIR_TO_TEST AND glusterfs_uri) 
+if(SD_GFAPI_DIR_TO_TEST AND glusterfs_uri)
   list(APPEND SYSTEM_TESTS glusterfs-backend)
 else()
   list(APPEND SYSTEM_TESTS_DISABLED glusterfs-backend)
