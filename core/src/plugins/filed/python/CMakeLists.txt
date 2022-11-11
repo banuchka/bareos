@@ -191,6 +191,8 @@ set(PYFILES
     ovirt/BareosFdPluginOvirt.py
     percona-xtrabackup/bareos-fd-percona-xtrabackup.py
     percona-xtrabackup/BareosFdPluginPerconaXtraBackup.py
+    libvirt-qemu/bareos-fd-libvirt-qemu.py
+    libvirt-qemu/BareosFdPluginLibvirtQemu.py
     postgres/bareos-fd-postgres.py
     postgres/BareosFdPluginPostgres.py
     vmware/bareos-fd-vmware.py
