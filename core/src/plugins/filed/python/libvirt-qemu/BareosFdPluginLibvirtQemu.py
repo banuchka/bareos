@@ -441,7 +441,7 @@ class BareosFdLibvirt(BareosFdPluginBaseclass):
         self.row_rop_raw = ROP.object
         self.rop_data[ROP.jobid] = json.loads(str(self.row_rop_raw.decode("utf-8")))
         if len(self.rop_data[ROP.jobid]) > 0:
-            self.max_to_lsn = int(len(self.rop_data[ROP.jobid]))
+            self.max_to_lsn = int(len(json.loads(self.rop_data[ROP.jobid])))
             f = open('%s/%s.cpt' % (self.tempdir, self.vmname), 'w', encoding='utf-8')
             f.write(json.loads(self.row_rop_raw.decode("utf-8")))
             f.close()
