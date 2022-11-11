@@ -439,11 +439,11 @@ class BareosFdLibvirt(BareosFdPluginBaseclass):
         # Improve: sanity / consistence check of restore object
         DebugMessage(100, "In restore:\n")
         self.row_rop_raw = ROP.object
-        self.rop_data[ROP.jobid] = json.loads(str(self.row_rop_raw))
+        self.rop_data[ROP.jobid] = json.loads(str(self.row_rop_raw.decode("utf-8")))
         if len(self.rop_data[ROP.jobid]) > 0:
             self.max_to_lsn = int(len(self.rop_data[ROP.jobid]))
-            f = open('%s/%s.cpt' % (self.tempdir, self.vmname), 'w')
-            f.write(str(self.row_rop_raw))
+            f = open('%s/%s.cpt' % (self.tempdir, self.vmname), 'w', encoding='utf-8')
+            f.write(json.loads(self.row_rop_raw.decode("utf-8")))
             f.close()
             DebugMessage(100, "In restore: '" + self.tempdir + "'\n")
             JobMessage(
